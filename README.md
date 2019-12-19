@@ -1,25 +1,48 @@
 # solved-problems
-#### The Office II - Boredom Score
+#### Permute a Palindrome
 ```javascript
-function boredom (staff) {
-  const score = {
-    accounts : 1,
-    finance : 2,
-    canteen : 10,
-    regulation : 3,
-    trading : 6,
-    change : 6,
-    IS : 8,
-    retail : 5,
-    cleaning : 4,
-    'pissing about' : 25,
+function permuteAPalindrome (input) { 
+let c = {};
+  for ( let i = 0; i < input.length; i++) {
+    if ( !c[input[i]] ) c[input[i]] = 1;
+    else c[input[i]] ++;
   }
-  let r = 0;
-  let arr = Object.values(staff);
-  arr.forEach ( a => {
-    r+= score[a];
+    let count = 0;
+  for ( let key in c) {
+   if ( c[key] % 2 === 0 ) delete c[key];
+    else count ++;
+    if ( count > 1 ) return false;
+  }
+return true;
+}
+```
+#### Most valuable character
+```javascript
+function solve(st) {
+  let a = {}, max = 0, c = st[0];
+  for ( let i = 0; i < st.length; i++) {
+    let b = st.lastIndexOf(st[i]) - st.indexOf(st[i]);
+    if ( b > max ) {
+      max = b;
+      c = st[i];
+    } else if ( b === max && st[i] < c) {
+      c = st[i];
+    }
+  }
+ return c;
+}
+```
+
+#### How many days are we represented in a foreign country?
+```javascript
+function daysRepresented(trips){
+  let r = [];
+  trips.forEach( a =>{
+   for (let i = a[0]; i <= a[1]; i++) {
+     r.push(i);
+   }
   })
-  return r <= 80? 'kill me now': r >= 100? 'party time!!': 'i can handle this';
-  
+
+  return r.filter( (x,i) => r.indexOf(x) === i).length;
 }
 ```
