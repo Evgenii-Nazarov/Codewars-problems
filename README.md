@@ -1,48 +1,46 @@
 # solved-problems
-#### Permute a Palindrome
+
+#### Longest alphabetical substring
 ```javascript
-function permuteAPalindrome (input) { 
-let c = {};
-  for ( let i = 0; i < input.length; i++) {
-    if ( !c[input[i]] ) c[input[i]] = 1;
-    else c[input[i]] ++;
+function longest (str) {
+  let startIndex = 0, maxSI = 0, endIndex = 0, maxEI = 0, len = 1, maxLen = 1, ans = '';
+  for ( let i = 0; i < str.length-1; i ++) {
+    if ( str[i+1].charCodeAt(0) >= str[i].charCodeAt(0) ) {
+      endIndex ++;
+      len++;
+    } else {
+        if ( len > maxLen) {
+        maxLen = len;
+        maxSI = startIndex;
+        maxEI = endIndex;
+        }
+        startIndex = i+1;
+        endIndex = i+1;
+        len = 1;
+      }
   }
-    let count = 0;
-  for ( let key in c) {
-   if ( c[key] % 2 === 0 ) delete c[key];
-    else count ++;
-    if ( count > 1 ) return false;
+
+  if ( len > maxLen) {
+    maxLen = len;
+    maxSI = startIndex;
+    maxEI = endIndex;
   }
-return true;
-}
-```
-#### Most valuable character
-```javascript
-function solve(st) {
-  let a = {}, max = 0, c = st[0];
-  for ( let i = 0; i < st.length; i++) {
-    let b = st.lastIndexOf(st[i]) - st.indexOf(st[i]);
-    if ( b > max ) {
-      max = b;
-      c = st[i];
-    } else if ( b === max && st[i] < c) {
-      c = st[i];
-    }
+  for ( let i = maxSI; i <= maxEI; i++) {
+    ans+=str[i]
   }
- return c;
+  return(ans)
 }
 ```
 
-#### How many days are we represented in a foreign country?
+#### Make a function that does arithmetic!
 ```javascript
-function daysRepresented(trips){
-  let r = [];
-  trips.forEach( a =>{
-   for (let i = a[0]; i <= a[1]; i++) {
-     r.push(i);
-   }
-  })
-
-  return r.filter( (x,i) => r.indexOf(x) === i).length;
+function arithmetic(a, b, operator){
+  const o = {
+    add:  a+b,
+    subtract: a-b,
+    multiply: a*b,
+    divide: a/b,
+  }
+  return o[operator];
 }
 ```
