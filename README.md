@@ -1,6 +1,6 @@
 # solved-problems
 
-#### Snail
+#### Snail 
 ```javascript
 snail = function(a) {
 if ( a[0].length === 0) return [];
