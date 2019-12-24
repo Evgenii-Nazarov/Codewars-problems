@@ -1,27 +1,39 @@
 # solved-problems
 
-#### Snail 
+#### Human readable duration format 
 ```javascript
-snail = function(a) {
-if ( a[0].length === 0) return [];
-  let b = [];
-while (a.length > 1) {
-  let c = a[a.length-1].reverse();
-  b.push( a.shift() );
-  a.pop();
- 
-  a.forEach ( a => {
-    b.push( a.pop())
-  });
- 
-  b.push(c);
+function formatDuration (s) {
+const a = {}, b = [];
+let str = '';
+if ( s === 0 ) return 'now'  
 
-  for ( let i = a.length-1; i >= 0; i --) {
-    b.push(a[i].shift());
-  }
-}  
-  if ( a[0] !== undefined) b.push(a[0]);
+a.year=( Math.floor(s/31536000) );
+s -= a.year*31536000;
+ 
+a.day=(  Math.floor( s/ 86400 ) )
+s -= a.day*86400;
+
+a.hour=(  Math.floor( s/ 3600 ) )
+s -= a.hour*3600;
   
-  return(b.join().split(',').map(a=>+a));
+a.minute=(  Math.floor( s/ 60 ) )
+s -= a.minute*60;
+
+a.second= (s)
+  
+for ( let key in a) {
+  if ( a[key] === 0) {
+    delete a[key]
+  }
+}
+
+for ( let key in a) {
+  b.push ( a[key] > 1? `${a[key]} ${key+'s'}`: `${a[key]} ${key}`);
+}  
+
+if (b.length > 1) {
+  return( b.slice( 0, b.length-1).join(', ') + ' and ' + b[b.length-1]  );
+} else return (b.join());
+
 }
 ```
