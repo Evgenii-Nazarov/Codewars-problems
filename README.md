@@ -1,77 +1,74 @@
 # solved-problems
 
-#### String incrementer 5 kyu
+#### Title Case 6 kyu
 ```javascript
-function incrementString (s) {
-  const a = [];
-  let count = 0;
-  for (let i = s.length-1; i >= 0; i --){
-    
-    if (!Number.isNaN(+s[i])) {
-        a.unshift(s[i];
-        count++;
-        }
+function titleCase(title, minorWords) {
+console.log(title, minorWords);
+const tilteArr = title.toLowerCase().split(' '),
+finalArr = [];
+if (title === '' || minorWords === '') return ''
+if (minorWords === undefined) {
+  for( let i = 0; i < tilteArr.length; i++){
+   const arr = tilteArr[i].toLowerCase().split('')
+         
+         arr[0] = arr[0].toUpperCase()
+         console.log(arr);
+
+         finalArr.push(arr.join(''));
   }
-
-  let newNumber = String(+a.join('')+1);
-  const letters = s.slice( 0,s.length-count);
-
-  if ( newNumber.length >= a.length) {
-    return(letters+newNumber);
-  } else {
-    let arr = newNumber.split('');
-     while ( arr.length < a.length){
-       arr.unshift('0')
-     }
-    newNumber = arr.join('');
-    return( letters+newNumber);
-  }
-
+  return finalArr.join(' ')
 }
-```
 
-#### Good vs Evil 6 kyu
-```javascript
-function goodVsEvil(good, evil){
-const goodPower = [1,2,3,3,4,10], evilPower = [1,2,2,2,3,5,10];
-const goodArmy = good.split(' '), evilArmy = evil.split(' ');
-let goodForce = 0, evilForce = 0;
-
-for ( let i = 0; i < goodArmy.length; i++) {
-  goodForce += goodArmy[i] *goodPower[i];
-}
-for ( let i = 0; i < evilArmy.length; i++) {
-  evilForce += evilArmy[i]*evilPower[i];
-}
-return goodForce === evilForce? 'Battle Result: No victor on this battle field': goodForce > evilForce?'Battle Result: Good triumphs over Evil':'Battle Result: Evil eradicates all trace of Good'
-}
-}
-```
-
-#### Rot13 5 kyu
-```javascript
-function rot13(message){
-  let str = '';
-  
-  for ( let i = 0; i < message.length; i++){
-    console.log(message[i].charCodeAt(0));
-    const charIndex = message[i].charCodeAt(0);
+   const minorWordsArr = minorWords.toLowerCase().split(' ');
     
-    if (charIndex > 96 && charIndex < 123){
-      
-      let rottedCharIndex = charIndex + 13;
-      if ( rottedCharIndex > 122) rottedCharIndex -= 26;
-      str += String.fromCharCode(rottedCharIndex) ;
-      
-    } else if (charIndex > 64 && charIndex < 91){
-        let rottedCharIndex = charIndex + 13;
-        if ( rottedCharIndex > 90) rottedCharIndex -= 26;
-        str += String.fromCharCode(rottedCharIndex) ;
+  for( let i = 0; i < tilteArr.length; i++){
+    let wordFromMinorWords = minorWordsArr.find((word)=> word === tilteArr[i])
+ 
+    if(wordFromMinorWords){
+      if (i === 0) {
+        const arr = wordFromMinorWords.toLowerCase().split('')
+        arr[0] = wordFromMinorWords[0].toUpperCase()
+        wordFromMinorWords = arr.join('')
+        finalArr.push(wordFromMinorWords);
       } else {
-        str+=message[i]
+        finalArr.push(wordFromMinorWords.toLowerCase())
       }
+    } else {
+         const arr = tilteArr[i].toLowerCase().split('')
+         
+         arr[0] = arr[0].toUpperCase()
+         console.log(arr);
+
+         finalArr.push(arr.join(''));
+    }
   }
-  console.log(str);
-  return str;
+  return(finalArr.join(' '));
+}
+}
+```
+
+#### Mexican Wave 6 kyu
+```javascript
+function wave(str){
+  const mexicanArr = [];
+  for ( let i = 0; i < str.length; i++) {
+    const charCode = str[i].charCodeAt(0)
+    if ( str[i].toLowerCase() === str[i].toUpperCase()) {
+      console.log(str[i]+ ' 1');
+    } else {
+      let changedArr = str.split('');
+      const char = changedArr[i];
+      if ( char === char.toLowerCase() ) {
+        changedArr[i]= changedArr[i].toUpperCase()
+        console.log(char + ' '+changedArr );
+      } else {
+        changedArr[i]= changedArr[i].toLowerCase()
+        console.log('22');
+      }
+      const changedStr = changedArr.join('')
+      mexicanArr.push(changedStr)
+    }
+  }
+  return(mexicanArr);
 }
 ```
