@@ -1,35 +1,40 @@
 # solved-problems
 
-#### Find the missing term in an Arithmetic Progression 6 kyu
+#### Text align justify 4 kyu
 ```javascript
-var findMissing = function (list) {  
-  let difference = list[1]-list[0];
-  let testMin = list[2] - list[1]
-  if (testMin<0) {
-    if ( testMin > difference) difference = list[2] - list[1]
-  } else {
-      if ( testMin < difference) difference = list[2] - list[1]
+var justify = function(str, len) {
+  let arr = str.split(' ');
+  let resultTotal = '';
+  console.log(arr);
+  while (arr.length > 0) {
+      let newStr = arr[0];
+      let i = 1;
+    while ( (newStr +' '+ arr[i]).length < len) {
+       if (arr[i] === undefined) {
+        resultTotal +=newStr;
+        console.log(resultTotal);
+         return resultTotal
+        break;
+      }
+      newStr +=' '+ arr[i] ;
+      i++;
+     
     }
-  for ( let i = 0; i < list.length; i++) {
-    if ( list[i] + difference !== list[i+1]) return list[i] + difference
-  }
-}
-```
+    let newArr = newStr.split(' ')
+    let numberOfNeededSpaces = len - newArr.join('').length;
+    console.log( numberOfNeededSpaces);
+    newArr = newArr.map( (x,i) => {
+      x+= ' '.repeat( Math.ceil(numberOfNeededSpaces/ ( newArr.length-(i+1) ) ));
+      numberOfNeededSpaces -=Math.ceil(numberOfNeededSpaces/ ( newArr.length-(i+1) ) );
 
-#### WeIrD StRiNg CaSe 6 kyu
-```javascript
-function toWeirdCase(string){
-  const result = [];
-  const strArr = string.toLowerCase().split(' ');
-  strArr.forEach( (a)=>{
-    let newWord = '';
-    let wordArr = a.split('');
-    wordArr.forEach( (a,i)=> {
-     if (i%2) newWord += a
-     else newWord += a.toUpperCase()
-    })
-    result.push(newWord)
-  })
-  return result.join(' ')
+      return x
+    });  
+    result=newArr.join('')+'\n'
+    console.log(result);
+    console.log(result.length);
+    resultTotal +=result
+    arr.splice(0,i)
+
+  }
 }
 ```
