@@ -1,74 +1,35 @@
 # solved-problems
 
-#### Title Case 6 kyu
+#### Find the missing term in an Arithmetic Progression 6 kyu
 ```javascript
-function titleCase(title, minorWords) {
-console.log(title, minorWords);
-const tilteArr = title.toLowerCase().split(' '),
-finalArr = [];
-if (title === '' || minorWords === '') return ''
-if (minorWords === undefined) {
-  for( let i = 0; i < tilteArr.length; i++){
-   const arr = tilteArr[i].toLowerCase().split('')
-         
-         arr[0] = arr[0].toUpperCase()
-         console.log(arr);
-
-         finalArr.push(arr.join(''));
-  }
-  return finalArr.join(' ')
-}
-
-   const minorWordsArr = minorWords.toLowerCase().split(' ');
-    
-  for( let i = 0; i < tilteArr.length; i++){
-    let wordFromMinorWords = minorWordsArr.find((word)=> word === tilteArr[i])
- 
-    if(wordFromMinorWords){
-      if (i === 0) {
-        const arr = wordFromMinorWords.toLowerCase().split('')
-        arr[0] = wordFromMinorWords[0].toUpperCase()
-        wordFromMinorWords = arr.join('')
-        finalArr.push(wordFromMinorWords);
-      } else {
-        finalArr.push(wordFromMinorWords.toLowerCase())
-      }
-    } else {
-         const arr = tilteArr[i].toLowerCase().split('')
-         
-         arr[0] = arr[0].toUpperCase()
-         console.log(arr);
-
-         finalArr.push(arr.join(''));
+var findMissing = function (list) {  
+  let difference = list[1]-list[0];
+  let testMin = list[2] - list[1]
+  if (testMin<0) {
+    if ( testMin > difference) difference = list[2] - list[1]
+  } else {
+      if ( testMin < difference) difference = list[2] - list[1]
     }
+  for ( let i = 0; i < list.length; i++) {
+    if ( list[i] + difference !== list[i+1]) return list[i] + difference
   }
-  return(finalArr.join(' '));
-}
 }
 ```
 
-#### Mexican Wave 6 kyu
+#### WeIrD StRiNg CaSe 6 kyu
 ```javascript
-function wave(str){
-  const mexicanArr = [];
-  for ( let i = 0; i < str.length; i++) {
-    const charCode = str[i].charCodeAt(0)
-    if ( str[i].toLowerCase() === str[i].toUpperCase()) {
-      console.log(str[i]+ ' 1');
-    } else {
-      let changedArr = str.split('');
-      const char = changedArr[i];
-      if ( char === char.toLowerCase() ) {
-        changedArr[i]= changedArr[i].toUpperCase()
-        console.log(char + ' '+changedArr );
-      } else {
-        changedArr[i]= changedArr[i].toLowerCase()
-        console.log('22');
-      }
-      const changedStr = changedArr.join('')
-      mexicanArr.push(changedStr)
-    }
-  }
-  return(mexicanArr);
+function toWeirdCase(string){
+  const result = [];
+  const strArr = string.toLowerCase().split(' ');
+  strArr.forEach( (a)=>{
+    let newWord = '';
+    let wordArr = a.split('');
+    wordArr.forEach( (a,i)=> {
+     if (i%2) newWord += a
+     else newWord += a.toUpperCase()
+    })
+    result.push(newWord)
+  })
+  return result.join(' ')
 }
 ```
