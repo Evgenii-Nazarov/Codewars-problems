@@ -1,51 +1,56 @@
 # solved-problems
 
-#### Remove exclamation marks 8 kyu
+#### Thinkful - Logic Drills: Traffic light 8 kyu
 ```java
-class Solution {
-    static String removeExclamationMarks(String s) {
-        int ind = 0 ;
-        while ( s.indexOf('!') != -1) {
-          ind = s.indexOf('!');
-          s = s.substring(0, ind) + s.substring(ind + 1);
-        }
-    return s;
-    }
+public class TrafficLights {
+
+  public static String updateLight(String current) {
+    String answer;
+    if (current == "red") answer = "green";
+    else if (current == "green") answer = "yellow";
+    else answer = "red";
+    return answer;
+  }
 }
 
 ```
 
-#### Get the mean of an array 8 kyu
+#### Get Nth Even Number 8 kyu
 ```java
-public class School{
-
- 	public static int getAverage(int[] marks){
-		int score = 0;
-    for ( int i = 0; i < marks.length; i++ ) {
-      score += marks[i];
-    }
-    score = score / marks.length;
-    
-    return score;
-	}
-
+public class Num {
+  public static int nthEven(int n) {
+    return n * 2 - 2;
+  }
 }
 ```
 
-#### Transportation on vacation 8 kyu
+#### Volume of a Cuboid 8 kyu
 ```java
 public class Kata {
-  public static int rentalCarCost(int d) {
-    int result;
-    if (d< 3) {
-      result = d*40;
-    } else if (d< 7) {
-        result = d*40-20;
-      } else {
-          result = d*40-50;
-        }
-    return result;
+
+  public static double getVolumeOfCuboid(final double length, final double width, final double height) {
+    return length*width*height ;
   }
+  
+}
+
+```
+
+#### Twice as old 8 kyu
+```java
+public class TwiceAsOld{
+
+  public static int TwiceAsOld(int dadYears, int sonYears){
+    int diff = dadYears - sonYears, i = 0, ans;
+    
+    while ( diff != i * 2) {
+      diff ++;
+      i++;
+    }
+    ans = i-sonYears;
+    return ans < 0 ? - ans: ans;
+  }
+
 }
 
 ```
