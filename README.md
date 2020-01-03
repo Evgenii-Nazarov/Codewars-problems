@@ -1,56 +1,46 @@
 # solved-problems
 
-#### Thinkful - Logic Drills: Traffic light 8 kyu
-```java
-public class TrafficLights {
+#### Buying a car 6 kyu
+```javascript
+function nbMonths(startPriceOld, startPriceNew, savingperMonth, percentLossByMonth){
+  let s = 0, i =1;
+  percentLossByMonth = percentLossByMonth * 0.01
+  while (s + startPriceOld < startPriceNew) {
+    startPriceOld -= startPriceOld * percentLossByMonth
+    startPriceNew -= startPriceNew * percentLossByMonth
+    s += savingperMonth
 
-  public static String updateLight(String current) {
-    String answer;
-    if (current == "red") answer = "green";
-    else if (current == "green") answer = "yellow";
-    else answer = "red";
-    return answer;
+    if ( i % 2 ) percentLossByMonth += 0.005
+    i++;
   }
-}
-
-```
-
-#### Get Nth Even Number 8 kyu
-```java
-public class Num {
-  public static int nthEven(int n) {
-    return n * 2 - 2;
-  }
+  return( [ i-1 , Math.round(s + startPriceOld - startPriceNew) ]);
 }
 ```
 
-#### Volume of a Cuboid 8 kyu
-```java
-public class Kata {
+#### Divide and Conquer 7 kyu
+```javascript
+function divCon(x){
 
-  public static double getVolumeOfCuboid(final double length, final double width, final double height) {
-    return length*width*height ;
+  let num = 0;
+
+  for (i = 0;i<x.length;i++){
+    if (typeof (x[i]) === 'number') {
+      num +=x[i]
+    } else 
+    num += -x[i];
   }
-  
-}
 
+return num;
+}
 ```
 
-#### Twice as old 8 kyu
-```java
-public class TwiceAsOld{
+#### Find the first non-consecutive number 8 kyu
+```javascript
+function firstNonConsecutive (arr) {
 
-  public static int TwiceAsOld(int dadYears, int sonYears){
-    int diff = dadYears - sonYears, i = 0, ans;
-    
-    while ( diff != i * 2) {
-      diff ++;
-      i++;
-    }
-    ans = i-sonYears;
-    return ans < 0 ? - ans: ans;
+  for(i = 0; i < arr.length-1; i++){
+    if ( arr[i]+1!==arr[i+1]) return arr[i+1]
   }
-
+  return null
 }
-
 ```
